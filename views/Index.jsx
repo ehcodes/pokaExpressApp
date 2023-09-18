@@ -8,6 +8,10 @@ const ulStyle = {};
 const liStyle = {
   listStyle: "none",
 };
+const aStyle = {
+  color: "#ffffff",
+  textDecoration: "none",
+};
 
 class Index extends React.Component {
   render() {
@@ -22,7 +26,13 @@ class Index extends React.Component {
           <h1>See Some Pokemon!</h1>
           <ul style={ulStyle}>
             {pokemon.map((pokemon, i) => {
-              return <li style={liStyle}>{capitalize(pokemon.name)}</li>;
+              return (
+                <li style={liStyle}>
+                  <a style={aStyle} href={`/pokemon/${i}`}>
+                    {capitalize(pokemon.name)}
+                  </a>
+                </li>
+              );
             })}
           </ul>
         </section>
