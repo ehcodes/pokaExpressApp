@@ -4,6 +4,10 @@ const port = 3000;
 const siteAddress = `http://localhost:3000/`;
 const pokemon = require("./models/pokemon.js");
 
+const jsxViewEngine = require("jsx-view-engine");
+app.set("view engine", "jsx");
+app.engine("jsx", jsxViewEngine());
+
 app.get("/", (req, res) => {
   res.send('Welcome to the Pokemon App!');
 });
