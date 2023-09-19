@@ -1,13 +1,14 @@
 const React = require("react");
+
 const lazyCSS = {
   textAlign: "center",
   color: "#ffffff",
   backgroundColor: "#000000",
   padding: "2rem",
-  height:'90vh'
+  height: "90vh",
 };
 const heading = { margin: "0", padding: "1rem" };
-const aStyle = { color: "#ffffff", textDecoration: "none",display:'block' };
+const aStyle = { color: "#ffffff", textDecoration: "none", display: "block" };
 
 class Show extends React.Component {
   render() {
@@ -17,7 +18,8 @@ class Show extends React.Component {
       return str;
     };
     const correctSrc = (src) => {
-      src = src.concat(".jpg");
+      const pokemonNames = require("../models/pokemon.js").map((el) => el.name);
+      pokemonNames.includes(pokemon.name.toLowerCase()) ? (src = src.concat(".jpg")) : src=src;
       return src;
     };
     return (
