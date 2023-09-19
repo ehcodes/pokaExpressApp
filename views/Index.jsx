@@ -4,7 +4,7 @@ const lazyCSS = {
   color: "#ffffff",
   backgroundColor: "#000000",
   padding: "2rem",
-  height:'90vh'
+  height: "90vh",
 };
 const heading = { margin: "0", padding: "1rem" };
 const liStyle = {
@@ -13,6 +13,10 @@ const liStyle = {
 const aStyle = {
   color: "#ffffff",
   textDecoration: "none",
+};
+const ulStyle = {
+  padding:0,
+  lineHeight:1.5,
 };
 
 class Index extends React.Component {
@@ -25,8 +29,11 @@ class Index extends React.Component {
     return (
       <>
         <section style={lazyCSS} className="pokemonAplenty">
+          <nav>
+              <a style={aStyle} href="/pokemon/new">Add another Pokemon</a>
+          </nav>
           <h1 style={heading}>See Some Pokemon!</h1>
-          <ul>
+          <ul style={ulStyle}>
             {pokemon.map((pokemon, i) => {
               return (
                 <li style={liStyle}>
