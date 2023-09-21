@@ -36,7 +36,7 @@ class Index extends React.Component {
             {this.props.pokemon.map((pokemon) => {
               return (
                 <li style={liStyle} key={pokemon.id}>
-                  <a style={aStyle} href={`/pokemon/${i}`}>
+                  <a style={aStyle} href={`/pokemon/${id}`}>
                     {capitalize(pokemon.name)}
                   </a>
                 </li>
