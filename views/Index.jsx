@@ -21,7 +21,6 @@ const ulStyle = {
 
 class Index extends React.Component {
   render() {
-    const { pokemon } = this.props;
     const capitalize = (str) => {
       str = str.toUpperCase().slice(0, 1).concat(str.slice(1));
       return str;
@@ -30,13 +29,13 @@ class Index extends React.Component {
       <>
         <section style={lazyCSS} className="pokemonAplenty">
           <nav>
-              <a style={aStyle} href="/pokemon/new">Add another Pokemon</a>
+              <a style={aStyle} href="/pokemon/new">Add a Pokemon</a>
           </nav>
           <h1 style={heading}>See Some Pokemon!</h1>
           <ul style={ulStyle}>
-            {pokemon.map((pokemon, i) => {
+            {this.props.pokemon.map((pokemon) => {
               return (
-                <li style={liStyle}>
+                <li style={liStyle} key={pokemon.id}>
                   <a style={aStyle} href={`/pokemon/${i}`}>
                     {capitalize(pokemon.name)}
                   </a>
