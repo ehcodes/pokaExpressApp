@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
 app.get("/pokemon", (req, res) => {
   Pokemon.find({}).then((allPokemon) => {
     res.render("Index", {
-      pokemon: allPokemon,
+      pluralPokemon: allPokemon,
     });
   });
 });
