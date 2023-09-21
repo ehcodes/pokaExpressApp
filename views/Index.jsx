@@ -15,38 +15,38 @@ const aStyle = {
   textDecoration: "none",
 };
 const ulStyle = {
-  padding:0,
-  lineHeight:1.5,
+  padding: 0,
+  lineHeight: 1.5,
 };
 
-class Index extends React.Component {
-  render() {
-    const capitalize = (str) => {
-      str = str.toUpperCase().slice(0, 1).concat(str.slice(1));
-      return str;
-    };
-    return (
-      <>
-        <section style={lazyCSS} className="pokemonAplenty">
-          <nav>
-              <a style={aStyle} href="/pokemon/new">Add a Pokemon</a>
-          </nav>
-          <h1 style={heading}>See Some Pokemon!</h1>
-          <ul style={ulStyle}>
-            {this.props.pokemon.map((pokemon) => {
-              return (
-                <li style={liStyle} key={pokemon.id}>
-                  <a style={aStyle} href={`/pokemon/${id}`}>
-                    {capitalize(pokemon.name)}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      </>
-    );
-  }
-}
+const Index = ({ pluralPokemon }) => {
+  const capitalize = (str) => {
+    str = str.toUpperCase().slice(0, 1).concat(str.slice(1));
+    return str;
+  };
+  return (
+    <>
+      <section style={lazyCSS} className="pokemonAplenty">
+        <nav>
+          <a style={aStyle} href="/pokemon/new">
+            Add a Pokemon
+          </a>
+        </nav>
+        <h1 style={heading}>See Some Pokemon!</h1>
+        <ul style={ulStyle}>
+          {pluralPokemon.map((pokemon) => {
+            return (
+              <li style={liStyle} key={pokemon.id}>
+                <a style={aStyle} href={`/pokemon/${pokemon.id}`}>
+                  {capitalize(pokemon.name)}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    </>
+  );
+};
 
 module.exports = Index;
