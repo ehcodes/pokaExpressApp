@@ -12,15 +12,10 @@ const aStyle = { color: "#ffffff", textDecoration: "none", display: "block" };
 
 class Show extends React.Component {
   render() {
-    const { pokemon } = this.props;
+    const pokemon = this.props.pokemon;
     const capitalize = (str) => {
       str = str.toUpperCase().slice(0, 1).concat(str.slice(1));
       return str;
-    };
-    const correctSrc = (src) => {
-      const pokemonNames = require("../models/pokemon.js").map((el) => el.name);
-      pokemonNames.includes(pokemon.name.toLowerCase()) ? (src = src.concat(".jpg")) : src=src;
-      return src;
     };
     return (
       <>
