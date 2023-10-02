@@ -3,11 +3,13 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
-const Pokemon = require("./models/PokemonSchema.js");
+const Pokemon = require("./src/models/PokemonSchema.js");
 
 const jsxViewEngine = require("jsx-view-engine");
+app.set("views", "src/views");
 app.set("view engine", "jsx");
 app.engine("jsx", jsxViewEngine());
+app.use(express.static('public'));
 
 const mongoose = require("mongoose");
 
@@ -43,16 +45,6 @@ app.get("/pokemon/new", function (req, res) {
   res.render("New");
 });
 
-app.post("/pokemon", async function (req, res) {
-  try {
-    const newPokemon = await Pokemon.create(req.body);
-    return res.redirect("/pokemon");
-  } catch (err) {
-    res.send(`error in adding pokemon`);
-    console.error(err);
-  }
-});
-
 app.get("/pokemon/:id", async function (req, res) {
   try {
     const foundPokemon = await Pokemon.findById(req.params.id);
@@ -65,9 +57,45 @@ app.get("/pokemon/:id", async function (req, res) {
   }
 });
 
-const port = 3000;
-const siteAddress = `http://localhost:3000/`;
+app.get("/pokemon/:id/edit", async (req, res) => {
+  try {
+    const foundPokemon = await Pokemon.findById(req.params.id);
+    res.render("Edit", { pokemon: foundPokemon });
+  } catch (err) {
+    console.error(err);
+    res.send({ msg: err.message });
+  }
+});
 
-app.listen(port, () => {
-  console.log(`See ${siteAddress} for pokemon data.`);
+app.post("/pokemon", async function (req, res) {
+  try {
+    const newPokemon = await Pokemon.create(req.body);
+    return res.redirect("/pokemon");
+  } catch (err) {
+    res.send(`error in adding pokemon`);
+    console.error(err);
+  }
+});
+
+app.put("/pokemon/:id", async (req, res) => {
+  try {
+    await Pokemon.findByIdAndUpdate(req.params.id, req.body);
+    return res.redirect(`/pokemon/${req.params.id}`);
+  } catch (err) {
+    res.send(`error in adding new pokemon`);
+    console.error(err);
+  }
+});
+
+app.delete("/pokemon/:id", async (req, res) => {
+  try {
+    await Pokemon.findByIdAndRemove(req.params.id);
+    res.redirect("/pokemon");
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+app.listen(3000, () => {
+  console.log(`See http://localhost:3000/ for pokemon data.`);
 });
