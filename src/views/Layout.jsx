@@ -40,6 +40,16 @@ const Layout = ({ title, page, poke, children }) => {
                   </a>
                 </li>
               ) : null}
+              {page == `Show` ? (
+                <li>
+                  <form
+                    action={`/pokemon/${poke.id}?_method=DELETE`}
+                    method="POST"
+                  >
+                    <input type="submit" value={`Delete ${poke.name}`} />
+                  </form>
+                </li>
+              ) : null}
             </ul>
           </nav>
         </header>
