@@ -12,9 +12,6 @@ const Show = ({ pokemon }) => {
       <section>
         <h2>{capitalize(pokemon.name)}</h2>
         <img src={pokemon.img} alt={capitalize(pokemon.name)} />
-        <a className="backButton" href="/pokemon/" title="See Some Pokemon">
-          Back
-        </a>
       </section>
     </Layout>
   );
